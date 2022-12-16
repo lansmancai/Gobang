@@ -245,16 +245,40 @@ public class Gobang
 									//还是不行则生成个随机的下棋坐标
 									else 
 									{
-										cpx = (int)(Math.random() * cpx);
-										cpy = (int)(Math.random() * cpy);
+										for (int k = 0; k < 8; k++)
+										{
+											cpx = x + xplus[k];
+											cpy = y + yplus[k];
+											if ((cpx > -1)&&(cpx < BOARD_SIZE)&&(cpy > -1)&&(cpy < BOARD_SIZE)&&board[cpx][cpy] != "1" && board[cpx][cpy] != "2")
+											{
+												break;
+											}
+										}
 									}
 							}
 						}
 						//没有二子连珠则随机生成个下棋坐标
 						if (cpx == -1)
 						{
+							for (int j = 0; j < 8; j++)
+							{
+								cpx = x + xplus[j];
+								cpy = y + yplus[j];
+								if ((cpx > -1)&&(cpx < BOARD_SIZE)&&(cpy > -1)&&(cpy < BOARD_SIZE)&&board[cpx][cpy] != "1" && board[cpx][cpy] != "2")
+								{
+									break;
+								}
+							}
+						}
+						if (cpx < 0 || cpy <0)
+						{
 							cpx = (int)(Math.random() * x);
 							cpy = (int)(Math.random() * y);
+						}
+						if (cpx < 0 || cpy <0)
+						{
+							cpx = (int)(Math.random() * BOARD_SIZE);
+							cpy = (int)(Math.random() * BOARD_SIZE);
 						}
 					}
 					if(board[cpx][cpy] != "1" && board[cpx][cpy] != "2")
